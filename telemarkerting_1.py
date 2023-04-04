@@ -1,4 +1,3 @@
-
 import pandas            as pd
 import streamlit         as st
 import seaborn           as sns
@@ -16,17 +15,17 @@ def multiselect_filter(relatorio, col, selecionados):
 
 def main():
     st.set_page_config(page_title = 'Telemarketing analisys', \
-        page_icon = './img/telmarketing_icon.png',
+        page_icon = r'C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\telmarketing_icon.png',
         layout="wide",
         initial_sidebar_state='expanded'
     )
     st.write('# Telemarketing analisys')
     st.markdown("---")
     
-    image = Image.open("./img/Bank-Branding.jpg")
+    image = Image.open(r"C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\Bank-Branding.jpg")
     st.sidebar.image(image)
 
-    bank_raw = pd.read_csv('./data/input/bank-additional-full.csv', sep=';')
+    bank_raw = pd.read_csv(r'C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\bank-additional-full.csv', sep=';')
     bank = bank_raw.copy()
 
     st.write('## Antes dos filtros')
@@ -154,12 +153,3 @@ def main():
 if __name__ == '__main__':
 	main()
     
-
-
-
-
-
-
-
-
-
