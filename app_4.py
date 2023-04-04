@@ -19,7 +19,7 @@ def main():
     
     start = timeit.default_timer()
     # bank_raw = pd.read_csv('../data/input/bank-additional-full-40.csv', sep=';')
-    bank_raw = load_data('../data/input/bank-additional-full-40.csv')
+    bank_raw = load_data(r"./data/input/bank-additional-full-40.csv")
 
     st.write('Time: ', timeit.default_timer() - start)  
 
@@ -29,6 +29,8 @@ if __name__ == '__main__':
 	main()
     
 
+import os
+print(os.getcwd())
 
 
 
