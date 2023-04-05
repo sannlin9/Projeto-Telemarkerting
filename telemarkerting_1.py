@@ -37,21 +37,6 @@ def multiselect_filter(relatorio, col, selecionados):
     else:
         return relatorio[relatorio[col].isin(selecionados)].reset_index(drop=True)
 
-# Função para converter o df para csv
-@st.cache
-def convert_df(df):
-    return df.to_csv(index=False).encode('utf-8')
-
-# Função para converter o df para excel
-@st.cache
-def to_excel(df):
-    output = BytesIO()
-    writer = pd.ExcelWriter(output, engine='xlsxwriter')
-    df.to_excel(writer, index=False, sheet_name='Sheet1')
-    writer.save()
-    processed_data = output.getvalue()
-    return processed_data
-
 
     # image = Image.open(r"C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\Bank-Branding.jpg")
     # st.sidebar.image(image)
