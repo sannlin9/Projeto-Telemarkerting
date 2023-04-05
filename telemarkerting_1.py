@@ -127,15 +127,7 @@ def multiselect_filter(relatorio, col, selecionados):
         submit_button = st.form_submit_button(label='Aplicar')
 # Botões de download dos dados filtrados
 
-# Função para converter o df para excel
-@st.cache
-def to_excel(df):
-    output = BytesIO()
-    writer = pd.ExcelWriter(output, engine='xlsxwriter')
-    df.to_excel(writer, index=False, sheet_name='Sheet1')
-    writer.save()
-    processed_data = output.getvalue()
-    return processed_data
+
     st.write('## Após os filtros')
     st.write(bank.head())
     st.markdown("---")
@@ -171,54 +163,6 @@ def to_excel(df):
 
     st.pyplot(plt)
 
-    # Botões de download dos dados dos gráficos
-    col1, col2 = st.columns(2)
-
-    df_xlsx = to_excel(bank_raw_target_perc)
-    col1.write('### Proporção original')
-    col1.write(bank_raw_target_perc)
-    col1.download_button(label='📥 Download',
-                          data=df_xlsx,
-                          file_name='bank_raw_y.xlsx')
-
-    df_xlsx = to_excel(bank_target_perc)
-    col2.write('### Proporção da tabela com filtros')
-    col2.write(bank_target_perc)
-    col2.download_button(label='📥 Download',
-                              data=df_xlsx,
-                              file_name='bank_y.xlsx')
-    st.markdown("---")
-
-    st.write('## Proporção de aceite')
-           # PLOTS
-    if graph_type == 'Barras':
-                sns.barplot(x=bank_raw_target_perc.index,
-                            y='y',
-                            data=bank_raw_target_perc,
-                            ax=ax[0])
-                ax[0].bar_label(ax[0].containers[0])
-                ax[0].set_title('Dados brutos',
-                                fontweight="bold")
-
-                sns.barplot(x=bank_target_perc.index,
-                            y='y',
-                            data=bank_target_perc,
-                            ax=ax[1])
-                ax[1].bar_label(ax[1].containers[0])
-                ax[1].set_title('Dados filtrados',
-                                fontweight="bold")
-    else:
-                bank_raw_target_perc.plot(
-                    kind='pie', autopct='%.2f', y='y', ax=ax[0])
-                ax[0].set_title('Dados brutos',
-                                fontweight="bold")
-
-                bank_target_perc.plot(
-                    kind='pie', autopct='%.2f', y='y', ax=ax[1])
-                ax[1].set_title('Dados filtrados',
-                                fontweight="bold")
-
-    st.pyplot(plt)
 
 
 if __name__ == '__main__':
