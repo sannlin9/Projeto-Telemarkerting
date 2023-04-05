@@ -126,6 +126,16 @@ def multiselect_filter(relatorio, col, selecionados):
 
         submit_button = st.form_submit_button(label='Aplicar')
 # Botões de download dos dados filtrados
+
+# Função para converter o df para excel
+@st.cache
+def to_excel(df):
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    df.to_excel(writer, index=False, sheet_name='Sheet1')
+    writer.save()
+    processed_data = output.getvalue()
+    return processed_data
     st.write('## Após os filtros')
     st.write(bank.head())
     st.markdown("---")
