@@ -30,8 +30,7 @@ def main():
     
     
     
-    #image = Image.open(r'Git\Projeto-Telemarkerting\Bank-Branding.jpg')
-    #st.sidebar.image(image)
+    st.sidebar.image('https://img.freepik.com/vetores-gratis/central-de-atendimento_24877-49049.jpg')
 
     bank_raw = pd.read_csv(r"https://raw.githubusercontent.com/sannlin9/Projeto-Telemarkerting/main/bank-additional-full.csv", sep=';')
     bank = bank_raw.copy()
