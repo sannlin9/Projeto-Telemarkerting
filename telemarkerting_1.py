@@ -28,8 +28,8 @@ def main():
     bank_raw = pd.read_csv(r"https://raw.githubusercontent.com/sannlin9/Projeto-Telemarkerting/main/bank-additional-full.csv", sep=';')
     bank = bank_raw.copy()
 
-    st.write('## Antes dos filtros')
-    st.write(bank_raw.head())
+    #st.write('## Antes dos filtros')
+    #st.write(bank_raw.head())
 
     with st.sidebar.form(key='my_form'):
     
