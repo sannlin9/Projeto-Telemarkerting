@@ -10,5 +10,7 @@ Nosso objetivo com este estudo é gerar insights a partir da visualização dos 
 
 Fonte:  <https://archive.ics.uci.edu/ml/datasets/bank+marketing> "UCI bank marketing dataset"
 
+Confira o app em: <https://sannlin9-projeto-telemarkerting-telemarkerting-1-y4an58.streamlit.app/>
+
 
 
