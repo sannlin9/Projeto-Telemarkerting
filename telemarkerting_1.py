@@ -25,7 +25,7 @@ def main():
     #image = Image.open(r'Git\Projeto-Telemarkerting\Bank-Branding.jpg')
     #st.sidebar.image(image)
 
-    bank_raw = pd.read_csv(r'C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\bank-additional-full.csv', sep=';')
+    bank_raw = pd.read_csv(r'https://github.com/sannlin9/Projeto-Telemarkerting/blob/587236aa1a9c09b1b12ab407efc2ec6e1f40c89c/bank-additional-full.csv', sep=';')
     bank = bank_raw.copy()
 
     st.write('## Antes dos filtros')
