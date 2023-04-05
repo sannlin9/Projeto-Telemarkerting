@@ -22,7 +22,7 @@ def main():
     st.write('# Telemarketing analisys')
     st.markdown("---")
     st.markdown('## Entendendo os dados de telemarketing')
-    st.markdown(" Os dados estão relacionados a campanhas de telemarketing ativo de uma instituição bancária portuguesa. Frequentemente, mais de um contato com o mesmo cliente foi necessário, a fim de verificar se o produto (depósito a prazo bancário/investimento de baixo risco) seria ou não contratado (sim ou não) ")
+    st.markdown(" Os dados estão relacionados a campanhas de telemarketing ativo de uma instituição bancária portuguesa. Frequentemente, mais de um contato com o mesmo cliente foi necessário, a fim de verificar se o produto (depósito a prazo bancário/investimento de baixo risco) seria ou não contratado (sim ou não). ")
     st.markdown("###### Nosso objetivo com este estudo é gerar insights a partir da visualização dos dados.")
     st.markdown('É buscar entender qual o comportamento dos clientes que contrataram o serviço ofertado, após aplicação de filtros e comparar com o restante dos clientes do banco de dados.')
     st.markdown("---")
