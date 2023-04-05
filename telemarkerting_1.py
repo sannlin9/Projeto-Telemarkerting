@@ -15,7 +15,7 @@ def multiselect_filter(relatorio, col, selecionados):
 
 def main():
     st.set_page_config(page_title = 'Telemarketing analisys', \
-        page_icon = r'C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\telmarketing_icon.png',
+        page_icon = 'https://st2.depositphotos.com/3027583/6491/v/600/depositphotos_64919923-stock-illustration-male-and-female-call-center.jpg',
         layout="wide",
         initial_sidebar_state='expanded'
     )
