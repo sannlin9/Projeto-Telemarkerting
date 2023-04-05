@@ -20,7 +20,6 @@ def multiselect_filter(relatorio, col, selecionados):
 
 # função para barra lateral
 
-
 def main():
     st.set_page_config(page_title='Telemarketing analisys',
                        page_icon=r'C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\telmarketing_icon.png',
@@ -29,6 +28,30 @@ def main():
                        )
     st.write('# Telemarketing analisys')
     st.markdown("---")
+    
+    # Função para filtrar baseado na multiseleção de categorias
+@st.cache(allow_output_mutation=True)
+def multiselect_filter(relatorio, col, selecionados):
+    if 'all' in selecionados:
+        return relatorio
+    else:
+        return relatorio[relatorio[col].isin(selecionados)].reset_index(drop=True)
+
+# Função para converter o df para csv
+@st.cache
+def convert_df(df):
+    return df.to_csv(index=False).encode('utf-8')
+
+# Função para converter o df para excel
+@st.cache
+def to_excel(df):
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    df.to_excel(writer, index=False, sheet_name='Sheet1')
+    writer.save()
+    processed_data = output.getvalue()
+    return processed_data
+
 
     # image = Image.open(r"C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\Bank-Branding.jpg")
     # st.sidebar.image(image)
@@ -117,7 +140,7 @@ def main():
         # bank = multiselect_filter(bank, 'day_of_week', day_of_week_selected)
 
         submit_button = st.form_submit_button(label='Aplicar')
-
+# Botões de download dos dados filtrados
     st.write('## Após os filtros')
     st.write(bank.head())
     st.markdown("---")
