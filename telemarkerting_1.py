@@ -8,7 +8,7 @@ custom_params = {"axes.spines.right": False, "axes.spines.top": False}
 sns.set_theme(style="ticks", rc=custom_params)
 
 def multiselect_filter(relatorio, col, selecionados):
-    if 'all' in selecionados:
+    if 'Todos' in selecionados:
         return relatorio
     else:
         return relatorio[relatorio[col].isin(selecionados)].reset_index(drop=True)
@@ -21,6 +21,13 @@ def main():
     )
     st.write('# Telemarketing analisys')
     st.markdown("---")
+    st.markdown('## Entendendo os dados de telemarketing')
+    st.markdown(" Os dados estão relacionados a campanhas de telemarketing ativo de uma instituição bancária portuguesa. Frequentemente, mais de um contato com o mesmo cliente foi necessário, a fim de verificar se o produto (depósito a prazo bancário/investimento de baixo risco) seria ou não contratado (sim ou não) ")
+    st.markdown("###### Nosso objetivo com este estudo é gerar insights a partir da visualização dos dados.")
+    st.markdown("---")
+    
+    
+    
     
     #image = Image.open(r'Git\Projeto-Telemarkerting\Bank-Branding.jpg')
     #st.sidebar.image(image)
@@ -45,48 +52,48 @@ def main():
 
         # PROFISSÕES
         jobs_list = bank.job.unique().tolist()
-        jobs_list.append('all')
-        jobs_selected =  st.multiselect("Profissão", jobs_list, ['all'])
+        jobs_list.append('Todos')
+        jobs_selected =  st.multiselect("Profissão", jobs_list, ['Todos'])
 
         # ESTADO CIVIL
         marital_list = bank.marital.unique().tolist()
-        marital_list.append('all')
-        marital_selected =  st.multiselect("Estado civil", marital_list, ['all'])
+        marital_list.append('Todos')
+        marital_selected =  st.multiselect("Estado civil", marital_list, ['Todos'])
 
         # DEFAULT?
         default_list = bank.default.unique().tolist()
-        default_list.append('all')
-        default_selected =  st.multiselect("Default", default_list, ['all'])
+        default_list.append('Todos')
+        default_selected =  st.multiselect("Tem parcelas de emprestimo em atraso?", default_list, ['Todos'])
 
         
         # TEM FINANCIAMENTO IMOBILIÁRIO?
         housing_list = bank.housing.unique().tolist()
-        housing_list.append('all')
-        housing_selected =  st.multiselect("Tem financiamento imob?", housing_list, ['all'])
+        housing_list.append('Todos')
+        housing_selected =  st.multiselect("Tem financiamento imobilhario?", housing_list, ['Todos'])
 
         
         # TEM EMPRÉSTIMO?
         loan_list = bank.loan.unique().tolist()
-        loan_list.append('all')
-        loan_selected =  st.multiselect("Tem empréstimo?", loan_list, ['all'])
+        loan_list.append('Todos')
+        loan_selected =  st.multiselect("Tem empréstimo?", loan_list, ['Todos'])
 
         
         # MEIO DE CONTATO?
         contact_list = bank.contact.unique().tolist()
-        contact_list.append('all')
-        contact_selected =  st.multiselect("Meio de contato", contact_list, ['all'])
+        contact_list.append('Todos')
+        contact_selected =  st.multiselect("Meio de contato", contact_list, ['Todos'])
 
         
         # MÊS DO CONTATO
         month_list = bank.month.unique().tolist()
-        month_list.append('all')
-        month_selected =  st.multiselect("Mês do contato", month_list, ['all'])
+        month_list.append('Todos')
+        month_selected =  st.multiselect("Mês do contato", month_list, ['Todos'])
 
         
         # DIA DA SEMANA
         day_of_week_list = bank.day_of_week.unique().tolist()
-        day_of_week_list.append('all')
-        day_of_week_selected =  st.multiselect("Dia da semana", day_of_week_list, ['all'])
+        day_of_week_list.append('Todos')
+        day_of_week_selected =  st.multiselect("Dia da semana do contato", day_of_week_list, ['Todos'])
 
 
         bank = (bank.query("age >= @idades[0] and age <= @idades[1]")
