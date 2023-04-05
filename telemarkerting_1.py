@@ -22,7 +22,7 @@ def main():
     st.write('# Telemarketing analisys')
     st.markdown("---")
     
-    image = Image.open(r'C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\Bank-Branding.jpg')
+    image = Image.open(r'Git\Projeto-Telemarkerting\Bank-Branding.jpg')
     st.sidebar.image(image)
 
     bank_raw = pd.read_csv(r'C:\Users\sann_\Documentos\curso\Projetos_CD\Git\Projeto-Telemarkerting\bank-additional-full.csv', sep=';')
