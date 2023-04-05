@@ -24,6 +24,7 @@ def main():
     st.markdown('## Entendendo os dados de telemarketing')
     st.markdown(" Os dados estão relacionados a campanhas de telemarketing ativo de uma instituição bancária portuguesa. Frequentemente, mais de um contato com o mesmo cliente foi necessário, a fim de verificar se o produto (depósito a prazo bancário/investimento de baixo risco) seria ou não contratado (sim ou não) ")
     st.markdown("###### Nosso objetivo com este estudo é gerar insights a partir da visualização dos dados.")
+    st.markdown('É buscar entender qual o comportamento dos clientes que contrataram o serviço ofertado, após aplicação de filtros e comparar com o restante dos clientes do banco de dados.')
     st.markdown("---")
     
     
@@ -39,17 +40,19 @@ def main():
     #st.write(bank_raw.head())
 
     with st.sidebar.form(key='my_form'):
-    
+        
+        # SELECIONA O TIPO DE GRÁFICO
+        graph_type = st.radio('Tipo de gráfico:', ('Barras', 'Pizza'))
+        
         # IDADES
         max_age = int(bank.age.max())
         min_age = int(bank.age.min())
         idades = st.slider(label='Idade', 
-                            min_value = min_age,
-                            max_value = max_age, 
-                            value = (min_age, max_age),
-                            step = 1)
-
-
+                                        min_value = min_age,
+                                        max_value = max_age, 
+                                        value = (min_age, max_age),
+                                        step = 1)
+    
         # PROFISSÕES
         jobs_list = bank.job.unique().tolist()
         jobs_list.append('Todos')
@@ -106,20 +109,6 @@ def main():
                     .pipe(multiselect_filter, 'month', month_selected)
                     .pipe(multiselect_filter, 'day_of_week', day_of_week_selected)
         )
-
-
-        # bank = bank[(bank['age'] >= idades[0]) & (bank['age'] <= idades[1])]
-        # bank = multiselect_filter(bank, 'job', jobs_selected)
-        # bank = multiselect_filter(bank, 'marital', marital_selected)
-        # bank = multiselect_filter(bank, 'default', default_selected)
-        # bank = multiselect_filter(bank, 'housing', housing_selected)
-        # bank = multiselect_filter(bank, 'loan', loan_selected)
-        # bank = multiselect_filter(bank, 'contact', contact_selected)
-        # bank = multiselect_filter(bank, 'month', month_selected)
-        # bank = multiselect_filter(bank, 'day_of_week', day_of_week_selected)
-
-
-
         submit_button = st.form_submit_button(label='Aplicar')
     
     st.write('## Após os filtros')
@@ -127,32 +116,44 @@ def main():
     st.markdown("---")
 
     # PLOTS    
+    # PLOTS    
     fig, ax = plt.subplots(1, 2, figsize = (5,3))
 
     bank_raw_target_perc = bank_raw.y.value_counts(normalize = True).to_frame()*100
     bank_raw_target_perc = bank_raw_target_perc.sort_index()
-    sns.barplot(x = bank_raw_target_perc.index, 
-                y = 'y',
-                data = bank_raw_target_perc, 
-                ax = ax[0])
-    ax[0].bar_label(ax[0].containers[0])
-    ax[0].set_title('Dados brutos',
-                    fontweight ="bold")
-    
+        
     try:
-        bank_target_perc = bank.y.value_counts(normalize = True).to_frame()*100
-        bank_target_perc = bank_target_perc.sort_index()
-        sns.barplot(x = bank_target_perc.index, 
-                    y = 'y', 
-                    data = bank_target_perc, 
-                    ax = ax[1])
-        ax[1].bar_label(ax[1].containers[0])
-        ax[1].set_title('Dados filtrados',
-                        fontweight ="bold")
+            bank_target_perc = bank.y.value_counts(normalize = True).to_frame()*100
+            bank_target_perc = bank_target_perc.sort_index()
     except:
-        st.error('Erro no filtro')
-    
+            st.error('Erro no filtro')
+               
     st.write('## Proporção de aceite')
+    
+    if graph_type == 'Barras':
+            sns.barplot(x = bank_raw_target_perc.index, 
+                        y = 'y',
+                        data = bank_raw_target_perc, 
+                        ax = ax[0])
+            ax[0].bar_label(ax[0].containers[0])
+            ax[0].set_title('Dados brutos',
+                            fontweight ="bold")
+            
+            sns.barplot(x = bank_target_perc.index, 
+                        y = 'y', 
+                        data = bank_target_perc, 
+                        ax = ax[1])
+            ax[1].bar_label(ax[1].containers[0])
+            ax[1].set_title('Dados filtrados',
+                            fontweight ="bold")
+    else:
+            bank_raw_target_perc.plot(kind='pie', autopct='%.2f', y='y', ax = ax[0])
+            ax[0].set_title('Dados brutos',
+                            fontweight ="bold")
+            
+            bank_target_perc.plot(kind='pie', autopct='%.2f', y='y', ax = ax[1])
+            ax[1].set_title('Dados filtrados',
+                            fontweight ="bold")
 
     st.pyplot(plt)
 
