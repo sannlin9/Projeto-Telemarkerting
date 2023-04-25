@@ -35,7 +35,7 @@ No webapp você pode realizar filtros independentemente e aplicá-los para gerar
 
 ## Ajuda
 
-É possível que você encontre lentidão na aplicação e durante o processamento dos dados, este aplicativo utiliza o Free Web Services da plataforma render e por esta razão há limitações quando a banda utilizada. 
+É possível que você encontre lentidão na aplicação e durante o processamento dos dados, este aplicativo utiliza o Free Web Services da plataforma render e por esta razão há limitações quanto a banda utilizada. 
 
 ## Autores
 
